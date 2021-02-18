@@ -5,6 +5,13 @@ galaxy_info:
   license: GPL-3.0-or-later
   min_ansible_version: 2.9
   description: Create Gooogle Cloud Storage buckets with Ansible
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
   galaxy_tags:
     - gcp
     - google
