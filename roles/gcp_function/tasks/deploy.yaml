@@ -33,7 +33,7 @@
     auth_kind: serviceaccount
     entry_point: '{{ func.entry_point }}'
     environmental_variables: '{{ env_vars }}'
-    event_trigger: '{{ func.event_trigger }}'
+    event_trigger: '{{ func.event_trigger | default(omit) }}'
     location: '{{ func.region | default(gcp_region, true) }}'
     name: '{{ func.name }}'
     project: '{{ gcp_project_id }}'
@@ -41,4 +41,4 @@
     service_account_file: '{{ gcp_service_account_file }}'
     source_archive_url: 'gs://{{ resource_bucket }}/{{ artifact_bucket_path }}'
     state: '{{ func.state | default(state, true) }}'
-    trigger_http: '{{ func.trigger_http }}'
+    trigger_http: '{{ func.trigger_http | default(omit) }}'
