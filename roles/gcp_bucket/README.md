@@ -24,10 +24,14 @@ Please read [common configuration](../../README.md#Common+Configuration) as well
 - name: Example playbook
   hosts: local
   roles:
-    - role: gcp_bucket
+    - role: practical_ansible.gcp.gcp_bucket
       gcp_region: europe-west3
       buckets:
         - name: example-bucket
         - name: example-bucket-across-ocean
           region: us-west1
 ```
+
+## Roadmap
+
+* Use async tasks to deploy buckets

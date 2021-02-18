@@ -2,7 +2,7 @@
 galaxy_info:
   author: Pavel Žák <pavel@zak.global>
   role_name: gcp_api
-  license: GNU GPL
+  license: GPL-3.0-or-later
   min_ansible_version: 2.9
   description: Enable GCP services from Ansible.
   galaxy_tags:

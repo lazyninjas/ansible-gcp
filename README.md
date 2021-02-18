@@ -2,6 +2,18 @@
 
 Collection of ansible roles used to deploy resources to GCP. Used to minify work when deploying your complicated cloud projects. Expected to be run on continous integration tools like Bitbucket Pipelines or Github Actions.
 
+## Requirements
+
+This collection was created as a simplification of [Google.Cloud collection](https://docs.ansible.com/ansible/latest/collections/google/cloud/) and it is built directly on top of its modules, so it needs to be installed as well.
+
+## Installation
+
+```shell
+ansible-galaxy install google.cloud practical_ansible.gcp
+```
+
+## Roles
+
 * [gcp_api](./roles/gcp_api) - Enables individual service APIs
 * [gcp_function](./roles/gcp_function) - Deploys Cloud Functions
 * [gcp_bucket](./roles/gcp_bucket) - Creates Storage Buckets

@@ -1,0 +1,23 @@
+---
+namespace: practical_ansible
+name: gcp
+version: 0.1.0
+readme: README.md
+authors:
+  - Pavel Žák <pavel@zak.global>
+description: A tiny set of Ansible roles that will help you live on \
+  the Google Cloud Platform
+license: GPL-3.0-or-later
+repository: https://github.com/practical-ansible/gcp
+documentation: https://github.com/practical-ansible/gcp
+issues: https://github.com/practical-ansible/gcp/issues
+tags:
+  - gcp
+  - google
+  - cloud
+  - platform
+  - storage
+  - bucket
+  - function
+  - api
+  - service

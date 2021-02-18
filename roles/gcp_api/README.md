@@ -22,8 +22,12 @@ Please read [common configuration](../../README.md#Common+Configuration) as well
 - name: Example playbook
   hosts: local
   roles:
-    - role: gcp_api
+    - role: practical_ansible.gcp.gcp_api
       apis:
         - cloudfunctions.googleapis.com
         - cloudbuild.googleapis.com
 ```
+
+## Roadmap
+
+* Use async tasks to run API tasks
