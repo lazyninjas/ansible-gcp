@@ -1,0 +1,5 @@
+---
+- include_tasks: deploy.yaml
+  loop: '{{ buckets }}'
+  loop_control:
+    loop_var: bucket

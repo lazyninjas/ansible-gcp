@@ -1,0 +1,2 @@
+---
+resource_bucket: '{{ gcp_project_id }}-ansible-resources'

@@ -1,0 +1,10 @@
+---
+allow_duplicates: true
+dependencies:
+  - role: gcp_api
+    apis:
+      - cloudfunctions.googleapis.com
+      - cloudbuild.googleapis.com
+  - role: gcp_bucket
+    buckets:
+      - name: '{{ resource_bucket }}'

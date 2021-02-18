@@ -1,0 +1,10 @@
+---
+- name: 'Create GCP Bucket: {{ bucket.name }}'
+  google.cloud.gcp_storage_bucket:
+    auth_kind: serviceaccount
+    location: '{{ bucket.region | default(gcp_region) }}'
+    name: '{{ bucket.name }}'
+    project: '{{ gcp_project_id }}'
+    service_account_file: '{{ gcp_service_account_file }}'
+    state: '{{ state }}'
+    storage_class: '{{ bucket.storage_class | default("STANDARD") }}'

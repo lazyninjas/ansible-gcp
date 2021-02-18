@@ -1,0 +1,9 @@
+---
+- name: 'Enable GCP API: {{ item }}'
+  google.cloud.gcp_serviceusage_service:
+    auth_kind: serviceaccount
+    name: '{{ item }}'
+    project: '{{ gcp_project_id }}'
+    service_account_file: '{{ gcp_service_account_file }}'
+    state: '{{ state }}'
+  loop: '{{ apis }}'
