@@ -1,5 +1,5 @@
 ---
-namespace: practical_ansible
+namespace: practical-ansible
 name: gcp
 version: 0.1.0
 readme: README.md
