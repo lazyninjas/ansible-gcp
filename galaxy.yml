@@ -23,5 +23,6 @@ tags:
   - service
 build_ignore:
   - .github
+  - tools
 dependencies:
   "google.cloud": "1.0.2"
