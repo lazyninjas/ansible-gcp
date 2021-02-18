@@ -15,7 +15,7 @@ Creates and destroys Storage Buckets in GCP/Google Cloud Platform.
 | name    |                | ✓        | Bucket name, should be kebab-case        |
 | region  | {{gcp_region}} | ✓        | Region where the bucket should be placed |
 
-Please read [common configuration](../../README.md#Common+Configuration) as well.
+Please read [Common Configuration](../../README.md#common-configuration) as well.
 
 ## Example
 

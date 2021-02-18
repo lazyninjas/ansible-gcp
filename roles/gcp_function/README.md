@@ -38,7 +38,7 @@ For detailed explanation, please see [EventTrigger](https://cloud.google.com/fun
 
 `*` To see list of available event types, run `gcloud functions event-types list`
 
-Please read [common configuration](../../README.md#Common+Configuration) as well.
+Please read [Common Configuration](../../README.md#common-configuration) as well.
 
 ### List of typical event types
 

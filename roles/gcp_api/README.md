@@ -13,7 +13,7 @@ gcloud services list --enabled
 |------|---------|----------|-----------------------------------|
 | apis |         | ✓        | Array of Google API URLs (string) |
 
-Please read [common configuration](../../README.md#Common+Configuration) as well.
+Please read [Common Configuration](../../README.md#common-configuration) as well.
 
 ## Example
 
