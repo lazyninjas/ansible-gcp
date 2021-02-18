@@ -1,2 +1,3 @@
 ---
 resource_bucket: '{{ gcp_project_id }}-ansible-resources'
+env_vars: {}

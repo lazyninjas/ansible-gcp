@@ -16,6 +16,7 @@ Deploys GCP/Google Cloud Platform **Cloud Functions**.
 | artifact_path |                | ✓        | Path to ZIP file with your function code             |
 | source_path   |                | ✓        | Path to function sources, used to autodetect version |
 | entry_point   |                | ✓        | Entry function name                                  |
+| env_vars      |                | ⨉        | Dictionary of environmental variables for the func   |
 | event_trigger |                | *        | Event trigger configuration (object)                 |
 | region        | {{gcp_region}} | ✓        | Region where the function should be placed           |
 | runtime       | nodejs14       | ✓        | [Runtime ID](https://cloud.google.com/functions/docs/concepts/exec) |

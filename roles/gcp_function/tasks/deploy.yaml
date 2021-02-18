@@ -32,6 +32,7 @@
   gc_cloudfunctions_cloud_function:
     auth_kind: serviceaccount
     entry_point: '{{ func.entry_point }}'
+    environmental_variables: '{{ env_vars }}'
     event_trigger: '{{ func.event_trigger }}'
     location: '{{ func.region | default(gcp_region) }}'
     name: '{{ func.name }}'
