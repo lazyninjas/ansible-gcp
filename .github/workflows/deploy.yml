@@ -1,0 +1,20 @@
+---
+name: Delivery
+on:
+  push:
+    branches-ignore:
+      - '**'
+    tags:
+      - 'v*'
+
+jobs:
+  deliver:
+    name: Lint the package
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ansible/ansible-lint-action@master
+      - uses: arillso/action.ansible.collection@master
+        with:
+          api_key: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
