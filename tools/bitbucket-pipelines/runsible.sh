@@ -15,6 +15,10 @@ if [[ $(which ansible) == "" ]]; then
   $cmd install ansible
 fi
 
+if [[ $(ansible-galaxy collection list | grep lazyninjas.gcp) == "" ]]; then
+  ansible-galaxy collection install lazyninjas.gcp
+fi
+
 # We expect local roles under __ansible__ dir
 ansible_dir=$(realpath "${repo_root}/__ansible__")
 
