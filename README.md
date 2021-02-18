@@ -1,4 +1,4 @@
-# Practical GCP
+# GCP for lazy peop..
 
 Collection of ansible roles used to deploy resources to GCP. Used to minify work when deploying your complicated cloud projects. Expected to be run on continous integration tools like Bitbucket Pipelines or Github Actions.
 
