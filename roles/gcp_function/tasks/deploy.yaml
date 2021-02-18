@@ -6,7 +6,7 @@
 
 - name: 'Configure {{ func.name }} version'
   set_fact:
-    project_version: '{{ func.version | default(npm.version) }}'
+    project_version: '{{ func.version | default(npm.version, true) }}'
 
 - name: 'Use testing version of {{ func.name }}'
   set_fact:
@@ -34,11 +34,11 @@
     entry_point: '{{ func.entry_point }}'
     environmental_variables: '{{ env_vars }}'
     event_trigger: '{{ func.event_trigger }}'
-    location: '{{ func.region | default(gcp_region) }}'
+    location: '{{ func.region | default(gcp_region, true) }}'
     name: '{{ func.name }}'
     project: '{{ gcp_project_id }}'
-    runtime: '{{ func.runtime | default("nodejs14") }}'
+    runtime: '{{ func.runtime | default("nodejs14", true) }}'
     service_account_file: '{{ gcp_service_account_file }}'
     source_archive_url: 'gs://{{ resource_bucket }}/{{ artifact_bucket_path }}'
-    state: '{{ func.state | default(state) }}'
+    state: '{{ func.state | default(state, true) }}'
     trigger_http: '{{ func.trigger_http }}'
