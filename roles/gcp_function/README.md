@@ -65,7 +65,7 @@ Please read [common configuration](../../README.md#Common+Configuration) as well
 - name: Example playbook
   hosts: local
   roles:
-    - role: practical_ansible.gcp.gcp_function
+    - role: lazyninjas.gcp.gcp_function
       functions:
         - name: example-function
           artifact_path: ../../dist/my-function.zip

@@ -24,7 +24,7 @@ Please read [common configuration](../../README.md#Common+Configuration) as well
 - name: Example playbook
   hosts: local
   roles:
-    - role: practical_ansible.gcp.gcp_bucket
+    - role: lazyninjas.gcp.gcp_bucket
       gcp_region: europe-west3
       buckets:
         - name: example-bucket

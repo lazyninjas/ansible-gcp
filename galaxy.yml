@@ -1,5 +1,5 @@
 ---
-namespace: practical-ansible
+namespace: lazyninjas
 name: gcp
 version: 0.1.2
 readme: README.md
@@ -8,9 +8,9 @@ authors:
 description: A tiny set of Ansible roles that will help you live on \
   the Google Cloud Platform
 license: GPL-3.0-or-later
-repository: https://github.com/practical-ansible/gcp
-documentation: https://github.com/practical-ansible/gcp
-issues: https://github.com/practical-ansible/gcp/issues
+repository: https://github.com/lazyninjas/gcp
+documentation: https://github.com/lazyninjas/gcp
+issues: https://github.com/lazyninjas/gcp/issues
 tags:
   - gcp
   - google

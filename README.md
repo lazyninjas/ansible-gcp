@@ -9,7 +9,7 @@ This collection was created as a simplification of [Google.Cloud collection](htt
 ## Installation
 
 ```shell
-ansible-galaxy install google.cloud practical_ansible.gcp
+ansible-galaxy install google.cloud lazyninjas.gcp
 ```
 
 ## Roles

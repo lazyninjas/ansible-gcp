@@ -22,7 +22,7 @@ Please read [common configuration](../../README.md#Common+Configuration) as well
 - name: Example playbook
   hosts: local
   roles:
-    - role: practical_ansible.gcp.gcp_api
+    - role: lazyninjas.gcp.gcp_api
       apis:
         - cloudfunctions.googleapis.com
         - cloudbuild.googleapis.com
