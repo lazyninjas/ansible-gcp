@@ -10,10 +10,10 @@ Collection of ansible roles used to deploy resources to GCP. Used to minify work
 
 Most of the global variables can be auto configured using environment variables and overriden by passing them to the specific role.
 
-| Name                     | Default    | Required | Description           |
-|--------------------------|------------|----------|-----------------------|
-| state                    | present    | ⨉        | *present* or *absent* |
-| gcp_project_id           | null       | ✓        | Your GCP project ID   |
-| gcp_region               | null       | ✓        | Region for this role  |
-| gcp_service_account_file | null       | ✓        | Path to the service account file with credentials |
-| project_environment      | production | ⨉        | Lowercase name of your project environment | 
+| Name/Environment name                               | Default    | Required | Description           |
+|-----------------------------------------------------|------------|----------|-----------------------|
+| gcp_project_id / GCP_PROJECT_ID                     | null       | ✓        | Your GCP project ID   |
+| gcp_region / GCP_REGION                             | null       | ✓        | Region for this role  |
+| gcp_service_account_file / GCP_SERVICE_ACCOUNT_FILE | null       | ✓        | Path to the service account file with credentials |
+| state                                               | present    | ✓        | `present` or `absent` |
+| gcp_project_environment / GCP_PROJECT_ENVIRONMENT   | production | ⨉        | Lowercase name of your project environment. The role will append datetime to your versions if the name is not production | 

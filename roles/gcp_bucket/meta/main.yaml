@@ -1,4 +1,18 @@
 ---
+galaxy_info:
+  author: Pavel Žák <pavel@zak.global>
+  role_name: gcp_bucket
+  license: GNU GPL
+  min_ansible_version: 2.9
+  description: Create Gooogle Cloud Storage buckets with Ansible
+  galaxy_tags:
+    - gcp
+    - google
+    - cloud
+    - platform
+    - storage
+    - bucket
+
 allow_duplicates: true
 dependencies:
   - gcp_env

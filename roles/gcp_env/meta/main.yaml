@@ -1,2 +1,10 @@
 ---
+galaxy_info:
+  author: Pavel Žák <pavel@zak.global>
+  role_name: gcp_env
+  license: GNU GPL
+  min_ansible_version: 2.9
+  description: Parent of practical gcp collection roles. Not intended for \
+    standalone use.
+
 allow_duplicates: true

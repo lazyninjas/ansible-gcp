@@ -6,7 +6,7 @@
 
 - name: 'Configure {{ func.name }} version'
   set_fact:
-    project_version: '{{ npm.version }}'
+    project_version: '{{ func.version | default(npm.version) }}'
 
 - name: 'Use testing version of {{ func.name }}'
   set_fact:
@@ -26,17 +26,18 @@
     project: '{{ gcp_project_id }}'
     service_account_file: '{{ gcp_service_account_file }}'
     src: '{{ func.artifact_path }}'
+  when: state == 'present'
 
 - name: 'Deploy Function {{ func.name }}'
   gc_cloudfunctions_cloud_function:
     auth_kind: serviceaccount
     entry_point: '{{ func.entry_point }}'
     event_trigger: '{{ func.event_trigger }}'
-    location: '{{ gcp_region }}'
+    location: '{{ func.region | default(gcp_region) }}'
     name: '{{ func.name }}'
     project: '{{ gcp_project_id }}'
-    runtime: nodejs14
+    runtime: '{{ func.runtime | default("nodejs14") }}'
     service_account_file: '{{ gcp_service_account_file }}'
     source_archive_url: 'gs://{{ resource_bucket }}/{{ artifact_bucket_path }}'
-    state: '{{ state }}'
+    state: '{{ func.state | default(state) }}'
     trigger_http: '{{ func.trigger_http }}'
