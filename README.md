@@ -9,14 +9,14 @@ This collection was created as a simplification of [Google.Cloud collection](htt
 ## Installation
 
 ```shell
-ansible-galaxy install google.cloud lazyninjas.gcp
+ansible-galaxy install lazyninjas.gcp
 ```
 
 ## Roles
 
-* [gcp_api](./roles/gcp_api) - Enables individual service APIs
-* [gcp_function](./roles/gcp_function) - Deploys Cloud Functions
-* [gcp_bucket](./roles/gcp_bucket) - Creates Storage Buckets
+* [gcp_api](https://github.com/lazyninjas/ansible-gcp/roles/gcp_api) - Enables individual service APIs
+* [gcp_function](https://github.com/lazyninjas/ansible-gcp/roles/gcp_function) - Deploys Cloud Functions
+* [gcp_bucket](https://github.com/lazyninjas/ansible-gcp/roles/gcp_bucket) - Creates Storage Buckets
 
 ## Common Configuration
 
