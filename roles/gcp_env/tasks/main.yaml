@@ -3,7 +3,7 @@
   set_fact:
     gcp_project_id: '{{ gcp_project_id | default(lookup("env", "GCP_PROJECT_ID")) }}'
     gcp_region: '{{ gcp_region | default(lookup("env", "GCP_REGION")) }}'
-    gcp_service_account_file: '{{ gcp_service_account_file | default(lookup("env", "GCP_CREDENTIALS_PATH")) }}'
+    gcp_service_account_file: '{{ gcp_service_account_file | default(lookup("env", "GCP_SERVICE_ACCOUNT_FILE")) }}'
     project_environment: '{{ project_environment | default(lookup("env", "GCP_PROJECT_ENVIRONMENT")) | lower }}'
 
 - name: Install google.cloud collection dependencies
