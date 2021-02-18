@@ -21,3 +21,5 @@ tags:
   - function
   - api
   - service
+build_ignore:
+  - .github
