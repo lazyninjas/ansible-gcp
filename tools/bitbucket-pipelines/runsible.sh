@@ -45,13 +45,12 @@ export GCP_PROJECT_ENVIRONMENT="$project_environment"
 # This part de-prefixes variables prefixed with environment name
 # For example: STATGING_DEPLOY_CREDENTIALS -> DEPLOY_CREDENTIALS
 env_prefix=${GCP_PROJECT_ENVIRONMENT^^}
-env_specific=$(printenv | grep "^${env_prefix}")
-for var_name in env_specific; do
+env_specific=$(printenv | grep "^${env_prefix}" | cut -d '=' -f1)
+for var_name in $env_specific; do
   # Strip environment name
-  var_name=$(echo $var_name | cut -d '=' -f1)
   env_name=$(echo $var_name | cut -d _ -f2-)
   # Export as a global variable
-  export $env_name=${!var_name}
+  export $env_name="${!var_name}"
 done
 
 # Configure gcloud credentials
