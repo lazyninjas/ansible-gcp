@@ -1,0 +1,3 @@
+mock_modules:
+  - lazyninjas.gcp.gc_storage_object
+  - lazyninjas.gcp.gc_cloudfunctions_cloud_function
