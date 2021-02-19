@@ -29,7 +29,7 @@ ANSIBLE_METADATA = {'metadata_version': '1.1', 'status': ["preview"], 'supported
 
 DOCUMENTATION = '''
 ---
-module: gcp_cloudfunctions_cloud_function
+module: gc_cloudfunctionscloud_function
 description:
 - A Cloud Function that contains user computation executed in response to an event.
 short_description: Creates a GCP CloudFunction
@@ -199,7 +199,7 @@ options:
 
 EXAMPLES = '''
 - name: create a cloud function
-  google.cloud.gcp_cloudfunctions_cloud_function:
+  google.cloud.gc_cloudfunctionscloud_function:
     name: test_object
     location: us-central1
     entry_point: helloGET

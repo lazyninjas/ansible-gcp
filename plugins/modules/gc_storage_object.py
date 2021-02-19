@@ -22,7 +22,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: gcp_storage_object
+module: gc_storage_object
 description:
 - Upload or download a file from a GCS bucket.
 short_description: Creates a GCP Object
@@ -100,7 +100,7 @@ options:
 
 EXAMPLES = """
 - name: create a object
-  google.cloud.gcp_storage_object:
+  google.cloud.gc_storage_object:
     action: download
     bucket: ansible-bucket
     src: modules.zip
