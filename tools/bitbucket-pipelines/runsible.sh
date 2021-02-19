@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# This script helps to run ansible on bitbucket pipelines by doing the tiny
+# simple things you'd have to write repeatedly
+# https://github.com/lazyninjas/ansible-gcp
+
 repo_root="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # Humanize input arguments
