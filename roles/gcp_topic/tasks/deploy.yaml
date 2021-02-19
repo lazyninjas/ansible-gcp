@@ -1,0 +1,8 @@
+---
+- name: 'Create GCP Pub/Sub Topic: {{ topic }}'
+  google.cloud.gcp_pubsub_topic:
+    auth_kind: serviceaccount
+    name: '{{ topic }}'
+    project: '{{ gcp_project_id }}'
+    service_account_file: '{{ gcp_service_account_file }}'
+    state: '{{ state }}'

@@ -1,0 +1,5 @@
+---
+- include_tasks: deploy.yaml
+  loop: '{{ topics }}'
+  loop_control:
+    loop_var: topic

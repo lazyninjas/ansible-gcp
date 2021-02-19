@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  author: Pavel Žák <pavel@zak.global>
+  role_name: gcp_topic
+  license: GPL-3.0-or-later
+  min_ansible_version: 2.9
+  description: Create Gooogle Cloud PubSub topics with Ansible
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - gcp
+    - google
+    - cloud
+    - platform
+    - pubsub
+    - topic
+
+allow_duplicates: true
+dependencies:
+  - gcp_env
