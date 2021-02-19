@@ -85,6 +85,11 @@ options:
     - The amount of memory in MB available for a function.
     required: false
     type: int
+  max_instances:
+    description:
+    - The limit on the maximum number of function instances that may coexist at a given time.
+    required: false
+    type: int
   labels:
     description:
     - A set of key/value label pairs associated with this Cloud Function.
@@ -255,6 +260,11 @@ availableMemoryMb:
   - The amount of memory in MB available for a function.
   returned: success
   type: int
+maxInstances:
+  description:
+  - The limit on the maximum number of function instances that may coexist at a given time.
+  returned: success
+  type: int
 serviceAccountEmail:
   description:
   - The email of the service account for this function.
@@ -388,6 +398,7 @@ def main():
             runtime=dict(type='str'),
             timeout=dict(type='str'),
             available_memory_mb=dict(type='int'),
+            max_instances=dict(type='int'),
             labels=dict(type='dict'),
             environment_variables=dict(type='dict'),
             source_archive_url=dict(type='str'),
@@ -465,6 +476,8 @@ def updateMask(request, response):
         update_mask.append('timeout')
     if request.get('availableMemoryMb') != response.get('availableMemoryMb'):
         update_mask.append('availableMemoryMb')
+    if request.get('maxInstances') != response.get('maxInstances'):
+        update_mask.append('maxInstances')
     if request.get('labels') != response.get('labels'):
         update_mask.append('labels')
     if request.get('environmentVariables') != response.get('environmentVariables'):
@@ -499,6 +512,7 @@ def resource_to_request(module):
         u'runtime': module.params.get('runtime'),
         u'timeout': module.params.get('timeout'),
         u'availableMemoryMb': module.params.get('available_memory_mb'),
+        u'maxInstances': module.params.get('max_instances'),
         u'labels': module.params.get('labels'),
         u'environmentVariables': module.params.get('environment_variables'),
         u'sourceArchiveUrl': module.params.get('source_archive_url'),
@@ -577,6 +591,7 @@ def response_to_hash(module, response):
         u'serviceAccountEmail': response.get(u'serviceAccountEmail'),
         u'updateTime': response.get(u'updateTime'),
         u'versionId': response.get(u'versionId'),
+        u'maxInstances': response.get(u'maxInstances'),
         u'labels': response.get(u'labels'),
         u'environmentVariables': response.get(u'environmentVariables'),
         u'sourceArchiveUrl': response.get(u'sourceArchiveUrl'),

@@ -14,14 +14,18 @@ Deploys GCP/Google Cloud Platform **Cloud Functions**.
 |---------------|----------------|----------|------------------------------------------------------|
 | name          |                | ✓        | Cloud Function name, should be kebab-case            |
 | artifact_path |                | ✓        | Path to ZIP file with your function code             |
-| source_path   |                | ✓        | Path to function sources, used to autodetect version |
 | entry_point   |                | ✓        | Entry function name                                  |
-| env_vars      |                | ⨉        | Dictionary of environmental variables for the func   |
-| event_trigger |                | *        | Event trigger configuration (object)                 |
 | region        | {{gcp_region}} | ✓        | Region where the function should be placed           |
 | runtime       | nodejs14       | ✓        | [Runtime ID](https://cloud.google.com/functions/docs/concepts/exec) |
-| trigger_http  | false          | *        | Should this function be triggered via HTTP           |
+| source_path   |                | ✓        | Path to function sources, used to autodetect version |
 | version       | *detected*     | ✓        | Function version, semver                             |
+| event_trigger |                | *        | Event trigger configuration (object)                 |
+| trigger_http  | false          | *        | Should this function be triggered via HTTP           |
+| description   |                | ⨉        | Function human readable description                  |
+| env_vars      |                | ⨉        | Dictionary of environmental variables for the func   |
+| max_instances |                | ⨉        | Limit number of function instances                   |
+| memory_mb     | 128            | ⨉        | Runtime memory in MB                                 |
+| timeout       | 60             | ⨉        | Function execution timeout in seconds, max 540       |
 
 <small>`*` either `event_trigger` or `trigger_http` must be provided</small>
 
