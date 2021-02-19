@@ -31,11 +31,28 @@ if [ -d packages/__ansible__ ]; then
   ansible_dir=$(realpath "${repo_root}/packages/__ansible__")
 fi
 
+if [[ "$project_environment" == "" ]]; then
+  project_environment="production"
+fi
+
 # Configure ansible env vars
 export ANSIBLE_DIR="${ansible_dir}"
 export ANSIBLE_ROLES_PATH="${ANSIBLE_DIR}/roles"
 export GCP_SERVICE_ACCOUNT_FILE="$(realpath ./.credentials.json)"
 export GCP_PROJECT_ENVIRONMENT="$project_environment"
+
+# Consume environment specific variables
+# This part de-prefixes variables prefixed with environment name
+# For example: STATGING_DEPLOY_CREDENTIALS -> DEPLOY_CREDENTIALS
+env_prefix=${GCP_PROJECT_ENVIRONMENT^^}
+env_specific=$(printenv | grep "^${env_prefix}")
+for var_name in env_specific; do
+  # Strip environment name
+  var_name=$(echo $var_name | cut -d '=' -f1)
+  env_name=$(echo $var_name | cut -d _ -f2-)
+  # Export as a global variable
+  export $env_name=${!var_name}
+done
 
 # Configure gcloud credentials
 echo ${DEPLOY_CREDENTIALS} > $GCP_SERVICE_ACCOUNT_FILE
