@@ -18,7 +18,7 @@
     artifact_bucket_path: 'cf/{{ func.name }}-{{ project_version }}.zip'
 
 - name: 'Upload Function {{ func.name }} artifact'
-  gc_storage_object:
+  lazyninjas.gcp.gc_storage_object:
     action: upload
     auth_kind: serviceaccount
     bucket: '{{ resource_bucket }}'
@@ -29,7 +29,7 @@
   when: state == 'present'
 
 - name: 'Deploy Function {{ func.name }}'
-  gc_cloudfunctions_cloud_function:
+  lazyninjas.gcp.gc_cloudfunctions_cloud_function:
     auth_kind: serviceaccount
     entry_point: '{{ func.entry_point }}'
     environmental_variables: '{{ env_vars }}'
