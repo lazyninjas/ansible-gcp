@@ -14,7 +14,6 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@v2
-      - uses: ansible/ansible-lint-action@master
       - uses: arillso/action.ansible.collection@master
         with:
           api_key: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}
