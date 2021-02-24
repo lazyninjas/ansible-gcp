@@ -3,4 +3,4 @@ state: present
 gcp_project_id: null
 gcp_region: null
 gcp_service_account_file: null
-project_environment: production
+project_environment: ''

@@ -4,7 +4,7 @@
     gcp_project_id: '{{ gcp_project_id | default(lookup("env", "GCP_PROJECT_ID"), true) }}'
     gcp_region: '{{ gcp_region | default(lookup("env", "GCP_REGION"), true) }}'
     gcp_service_account_file: '{{ gcp_service_account_file | default(lookup("env", "GCP_SERVICE_ACCOUNT_FILE"), true) }}'
-    project_environment: '{{ project_environment | default(lookup("env", "GCP_PROJECT_ENVIRONMENT"), true) | lower }}'
+    project_environment: '{{ project_environment | default(lookup("env", "GCP_PROJECT_ENVIRONMENT"), true) | default("production", true) | lower }}'
 
 - name: Install google.cloud collection dependencies
   pip:
