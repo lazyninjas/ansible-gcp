@@ -24,7 +24,7 @@ Deploys GCP/Google Cloud Platform **Cloud Functions**.
 | description   |                | ⨉        | Function human readable description                  |
 | env_vars      |                | ⨉        | Dictionary of environmental variables for the func   |
 | max_instances |                | ⨉        | Limit number of function instances                   |
-| memory_mb     | 128            | ⨉        | Runtime memory in MB                                 |
+| memory_mb     |                | ⨉        | Runtime memory in MB                                 |
 | timeout       | 60             | ⨉        | Function execution timeout in seconds, max 540       |
 
 <small>`*` either `event_trigger` or `trigger_http` must be provided</small>
