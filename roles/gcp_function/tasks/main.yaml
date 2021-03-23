@@ -1,5 +1,5 @@
 ---
 - include_tasks: deploy.yaml
-  loop: '{{ functions }}'
+  loop: '{{ functions | lazyninjas.gcp.gcp_cfs_props(project_environment) }}'
   loop_control:
     loop_var: func

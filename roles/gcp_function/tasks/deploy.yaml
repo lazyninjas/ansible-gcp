@@ -1,28 +1,10 @@
 ---
-- name: 'Read {{ func.name }} npm config'
-  include_vars:
-    file: '{{ func.source_path }}/package.json'
-    name: npm
-
-- name: 'Configure {{ func.name }} version'
-  set_fact:
-    project_version: '{{ func.version | default(npm.version, true) }}'
-
-- name: 'Use testing version of {{ func.name }}'
-  set_fact:
-    project_version: '{{ project_version }}-{{ ansible_date_time.iso8601 | replace(":", "-") }}'
-  when: project_environment != 'production'
-
-- name: 'Configure {{ func.name }} env'
-  set_fact:
-    artifact_bucket_path: 'cf/{{ func.name }}-{{ project_version }}.zip'
-
 - name: 'Upload Function {{ func.name }} artifact'
   lazyninjas.gcp.gc_storage_object:
     action: upload
     auth_kind: serviceaccount
     bucket: '{{ resource_bucket }}'
-    dest: '{{ artifact_bucket_path }}'
+    dest: '{{ func.artifact_bucket_path }}'
     project: '{{ gcp_project_id }}'
     service_account_file: '{{ gcp_service_account_file }}'
     src: '{{ func.artifact_path }}'
@@ -43,7 +25,7 @@
     runtime: '{{ func.runtime | default("nodejs14", true) }}'
     service_account_file: '{{ gcp_service_account_file }}'
     service_account_email: '{{ runtime_account | default(omit) }}'
-    source_archive_url: 'gs://{{ resource_bucket }}/{{ artifact_bucket_path }}'
+    source_archive_url: 'gs://{{ resource_bucket }}/{{ func.artifact_bucket_path }}'
     state: '{{ func.state | default(state, true) }}'
     timeout: '{{ func.timeout | default(omit) }}'
     trigger_http: '{{ func.trigger_http | default(omit) }}'
