@@ -49,7 +49,6 @@ fi
 # Configure ansible env vars
 export ANSIBLE_DIR="${ansible_dir}"
 export ANSIBLE_ROLES_PATH="${ANSIBLE_DIR}/roles"
-export GCP_SERVICE_ACCOUNT_FILE="$(realpath ./.credentials.json)"
 export GCP_PROJECT_ENVIRONMENT="$project_environment"
 
 # Consume environment specific variables
@@ -65,7 +64,10 @@ for var_name in $env_specific; do
 done
 
 # Configure gcloud credentials
-echo ${DEPLOY_CREDENTIALS} > $GCP_SERVICE_ACCOUNT_FILE
+if [[ "${GCP_SERVICE_ACCOUNT_FILE}" == "" ]]; then
+  export GCP_SERVICE_ACCOUNT_FILE="$(realpath ./.credentials.json)"
+  echo ${DEPLOY_CREDENTIALS} > $GCP_SERVICE_ACCOUNT_FILE
+fi
 
 # Configure ansible work path
 if [ -d "$playbook_path" ]; then
