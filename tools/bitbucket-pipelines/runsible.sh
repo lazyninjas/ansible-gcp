@@ -4,7 +4,13 @@
 # simple things you'd have to write repeatedly
 # https://github.com/lazyninjas/ansible-gcp
 
-repo_root="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+repo_root=$(git rev-parse --show-toplevel 2> /dev/null)
+
+if [[ "${repo_root}" == "" ]]; then
+  repo_root="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+fi
+
+
 
 # Humanize input arguments
 playbook_path=$(echo $1)
@@ -23,12 +29,17 @@ if [[ $(ansible-galaxy collection list | grep lazyninjas.gcp) == "" ]]; then
   ansible-galaxy collection install lazyninjas.gcp
 fi
 
+dir_roles_regular="${repo_root}/__ansible__"
+dir_roles_lerna="${repo_root}/packages/__ansible__"
+
 # We expect local roles under __ansible__ dir
-ansible_dir=$(realpath "${repo_root}/__ansible__")
+if [ -d $dir_roles_regular ]; then
+  ansible_dir=$(realpath $dir_roles_regular)
+fi
 
 # Lazy if for lerna users
-if [ -d packages/__ansible__ ]; then
-  ansible_dir=$(realpath "${repo_root}/packages/__ansible__")
+if [ -d $dir_roles_lerna ]; then
+  ansible_dir=$(realpath $dir_roles_lerna)
 fi
 
 if [[ "$project_environment" == "" ]]; then
