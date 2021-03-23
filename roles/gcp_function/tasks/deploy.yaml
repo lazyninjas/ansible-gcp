@@ -42,6 +42,7 @@
     project: '{{ gcp_project_id }}'
     runtime: '{{ func.runtime | default("nodejs14", true) }}'
     service_account_file: '{{ gcp_service_account_file }}'
+    service_account_email: '{{ runtime_account | default(omit) }}'
     source_archive_url: 'gs://{{ resource_bucket }}/{{ artifact_bucket_path }}'
     state: '{{ func.state | default(state, true) }}'
     timeout: '{{ func.timeout | default(omit) }}'

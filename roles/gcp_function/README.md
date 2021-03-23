@@ -10,22 +10,23 @@ Deploys GCP/Google Cloud Platform **Cloud Functions**.
 
 ### Function configuration
 
-| Name          | Default        | Required | Description                                          |
-|---------------|----------------|----------|------------------------------------------------------|
-| name          |                | ✓        | Cloud Function name, should be kebab-case            |
-| artifact_path |                | ✓        | Path to ZIP file with your function code             |
-| entry_point   |                | ✓        | Entry function name                                  |
-| region        | {{gcp_region}} | ✓        | Region where the function should be placed           |
-| runtime       | nodejs14       | ✓        | [Runtime ID](https://cloud.google.com/functions/docs/concepts/exec) |
-| source_path   |                | ✓        | Path to function sources, used to autodetect version |
-| version       | *detected*     | ✓        | Function version, semver                             |
-| event_trigger |                | *        | Event trigger configuration (object)                 |
-| trigger_http  | false          | *        | Should this function be triggered via HTTP           |
-| description   |                | ⨉        | Function human readable description                  |
-| env_vars      |                | ⨉        | Dictionary of environmental variables for the func   |
-| max_instances |                | ⨉        | Limit number of function instances                   |
-| memory_mb     |                | ⨉        | Runtime memory in MB                                 |
-| timeout       | 60             | ⨉        | Function execution timeout in seconds, max 540       |
+| Name            | Default        | Required | Description                                          |
+|-----------------|----------------|----------|------------------------------------------------------|
+| name            |                | ✓        | Cloud Function name, should be kebab-case            |
+| artifact_path   |                | ✓        | Path to ZIP file with your function code             |
+| entry_point     |                | ✓        | Entry function name                                  |
+| region          | {{gcp_region}} | ✓        | Region where the function should be placed           |
+| runtime         | nodejs14       | ✓        | [Runtime ID](https://cloud.google.com/functions/docs/concepts/exec) |
+| source_path     |                | ✓        | Path to function sources, used to autodetect version |
+| version         | *detected*     | ✓        | Function version, semver                             |
+| event_trigger   |                | *        | Event trigger configuration (object)                 |
+| trigger_http    | false          | *        | Should this function be triggered via HTTP           |
+| description     |                | ⨉        | Function human readable description                  |
+| env_vars        |                | ⨉        | Dictionary of environmental variables for the func   |
+| max_instances   |                | ⨉        | Limit number of function instances                   |
+| memory_mb       |                | ⨉        | Runtime memory in MB                                 |
+| runtime_account |                | ⨉        | Service account e-mail address                       |
+| timeout         | 60s            | ⨉        | Function execution timeout in seconds, max 540s      |
 
 <small>`*` either `event_trigger` or `trigger_http` must be provided</small>
 
