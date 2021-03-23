@@ -1,5 +1,5 @@
 ---
-- name: 'Enable GCP API: {{ item }}'
+- name: 'Enable GCP APIs'
   google.cloud.gcp_serviceusage_service:
     auth_kind: serviceaccount
     name: '{{ item }}'
