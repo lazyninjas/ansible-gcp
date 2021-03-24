@@ -88,7 +88,3 @@ Please read [Common Configuration](../../README.md#common-configuration) as well
             event_type: google.storage.object.finalize
             resource: projects/_/buckets/regular-bucket-name  
 ```
-
-## Roadmap
-
-* Use async tasks to deploy functions

@@ -1,5 +1,76 @@
 ---
-- include_tasks: deploy.yaml
-  loop: '{{ functions | lazyninjas.gcp.gcp_cfs_props(project_environment) }}'
+- name: Configure functions props
+  set_fact:
+    formatted_functions: '{{ functions | lazyninjas.gcp.gcp_cfs_props(project_environment) }}'
+
+- name: Upload Cloud Functions artifacts
+  lazyninjas.gcp.gc_storage_object:
+    action: upload
+    auth_kind: serviceaccount
+    bucket: '{{ resource_bucket }}'
+    dest: '{{ func.artifact_bucket_path }}'
+    project: '{{ gcp_project_id }}'
+    service_account_file: '{{ gcp_service_account_file }}'
+    src: '{{ func.artifact_path }}'
+  when: state == 'present'
+  async: 3600
+  poll: 0
+  register: uploads
+  loop: '{{ formatted_functions }}'
   loop_control:
     loop_var: func
+
+- name: Wait for artifacts to be uploaded
+  async_status:
+    jid: '{{ upload_task.ansible_job_id }}'
+  register: job_result
+  retries: 2000
+  delay: 2
+  until: job_result.finished
+  loop: '{{ uploads.results }}'
+  loop_control:
+    loop_var: upload_task
+  when: state == 'present'
+
+- name: 'Deploy Function {{ func.name }}'
+  lazyninjas.gcp.gc_cloudfunctions_cloud_function:
+    auth_kind: serviceaccount
+    available_memory_mb: '{{ func.memory_mb | default(omit) }}'
+    description: '{{ func.description | default(omit) }}'
+    entry_point: '{{ func.entry_point }}'
+    environment_variables: '{{ func.env_vars | default(env_vars) }}'
+    event_trigger: '{{ func.event_trigger | default(omit) }}'
+    location: '{{ func.region | default(gcp_region, true) }}'
+    max_instances: '{{ func.max_instances | default(omit) }}'
+    name: '{{ func.name }}'
+    project: '{{ gcp_project_id }}'
+    runtime: '{{ func.runtime | default("nodejs14", true) }}'
+    service_account_file: '{{ gcp_service_account_file }}'
+    service_account_email: '{{ runtime_account | default(omit) }}'
+    source_archive_url: 'gs://{{ resource_bucket }}/{{ func.artifact_bucket_path }}'
+    state: '{{ func.state | default(state, true) }}'
+    timeout: '{{ func.timeout | default(omit) }}'
+    trigger_http: '{{ func.trigger_http | default(omit) }}'
+  when: state == 'present'
+  async: 3600
+  poll: 0
+  register: deploys
+  loop: '{{ formatted_functions }}'
+  loop_control:
+    loop_var: func
+
+- name: foo
+  debug:
+    var: deploys
+
+- name: Wait for functions to be deployed
+  async_status:
+    jid: '{{ deploy_task.ansible_job_id }}'
+  register: job_result
+  retries: 2000
+  delay: 2
+  until: job_result.finished
+  loop: '{{ deploys.results }}'
+  loop_control:
+    loop_var: deploy_task
+  when: state == 'present'
