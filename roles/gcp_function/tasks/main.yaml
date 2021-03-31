@@ -59,10 +59,6 @@
   loop_control:
     loop_var: func
 
-- name: foo
-  debug:
-    var: deploys
-
 - name: Wait for functions to be deployed
   async_status:
     jid: '{{ deploy_task.ansible_job_id }}'
