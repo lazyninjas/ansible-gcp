@@ -57,3 +57,8 @@ pipelines:
           - ./runsible.sh __ansible__/buckets.yaml PRODUCTION
 ```
 
+
+### Debugging
+
+
+Define `RUNSIBLE_DEBUG=1` in environment

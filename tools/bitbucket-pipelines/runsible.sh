@@ -89,5 +89,11 @@ if [ ! -f $inventory_path ]; then
   echo -e "[local]\n127.0.0.1\n\n[local:vars]\nansible_python_interpreter=${interpreter}\nansible_connection=local" > $inventory_path
 fi
 
+debug=""
+
+if [[ "$RUNSIBLE_DEBUG" != "" ]]; then
+  debug="-vvv"
+fi
+
 # Run ansible
-ansible-playbook "${playbook}" -i "${inventory_path}"
+ansible-playbook $debug "${playbook}" -i "${inventory_path}"
