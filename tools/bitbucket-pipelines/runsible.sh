@@ -53,7 +53,7 @@ export GCP_PROJECT_ENVIRONMENT="$project_environment"
 
 # Consume environment specific variables
 # This part de-prefixes variables prefixed with environment name
-# For example: STATGING_DEPLOY_CREDENTIALS -> DEPLOY_CREDENTIALS
+# For example: STAGING_DEPLOY_CREDENTIALS -> DEPLOY_CREDENTIALS
 env_prefix=${GCP_PROJECT_ENVIRONMENT^^}
 env_specific=$(printenv | grep "^${env_prefix}" | cut -d '=' -f1)
 for var_name in $env_specific; do
