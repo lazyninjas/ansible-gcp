@@ -23,3 +23,6 @@ galaxy_info:
 allow_duplicates: true
 dependencies:
   - gcp_env
+  - role: gcp_api
+    apis:
+      - pubsub.googleapis.com
