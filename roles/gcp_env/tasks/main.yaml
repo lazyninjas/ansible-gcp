@@ -3,6 +3,7 @@
   set_fact:
     gcp_project_id: '{{ gcp_project_id | default(lookup("env", "GCP_PROJECT_ID"), true) }}'
     gcp_region: '{{ gcp_region | default(lookup("env", "GCP_REGION"), true) }}'
+    gcp_timezone: '{{ gcp_timezone | default(lookup("env", "GCP_TIMEZONE"), true) | default("UTC", true) }}'
     gcp_service_account_file: '{{ gcp_service_account_file | default(lookup("env", "GCP_SERVICE_ACCOUNT_FILE"), true) }}'
     project_environment: '{{ project_environment | default(lookup("env", "GCP_PROJECT_ENVIRONMENT"), true) | default("production", true) | lower }}'
 

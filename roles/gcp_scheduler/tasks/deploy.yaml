@@ -1,0 +1,17 @@
+---
+- name: 'Create {{ scheduler.name }}'
+  google.cloud.gcp_cloudscheduler_job:
+    appengine_http_target: '{{ scheduler.appengine_http_target | default(omit) }}'
+    attempt_deadline: '{{ scheduler.attempt_deadline | default(omit) }}'
+    auth_kind: serviceaccount
+    description: '{{ scheduler.description }}'
+    http_target: '{{ scheduler.http_target | default(omit) }}'
+    name: '{{ scheduler.name }}'
+    project: '{{ gcp_project_id }}'
+    pubsub_target: '{{ scheduler.pubsub_target | default(omit) }}'
+    region: '{{ scheduler.region | default(gcp_region, true) }}'
+    retry_config: '{{ scheduler.retry_config | default(omit) }}'
+    service_account_file: '{{ gcp_service_account_file }}'
+    schedule: '{{ scheduler.schedule }}'
+    state: '{{ state }}'
+    time_zone: '{{ scheduler.timezone | default(gcp_timezone) }}'
