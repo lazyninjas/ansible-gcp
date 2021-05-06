@@ -1,0 +1,3 @@
+---
+- name: Configure gcloud
+  command: 'gcloud auth activate-service-account --key-file {{ gcp_service_account_file }}'
