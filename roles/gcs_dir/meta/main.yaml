@@ -1,0 +1,27 @@
+---
+galaxy_info:
+  author: Pavel Žák <pavel@zak.global>
+  role_name: gcs_dir
+  license: GPL-3.0-or-later
+  min_ansible_version: 2.9
+  description: Upload directory to GCP Cloud Storage Bucket
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - gcp
+    - google
+    - cloud
+    - platform
+    - shell
+
+allow_duplicates: true
+dependencies:
+  - role: lazyninjas.gcp.gcp_shell_account
+  - role: lazyninjas.gcp.gcp_bucket
+    buckets:
+      - name: '{{ dest_bucket }}'

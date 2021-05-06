@@ -1,0 +1,3 @@
+---
+- name: Upload {{ dir }}
+  ansible.builtin.shell: gsutil -m cp -r {{dir}} gs://{{dest_bucket}}
