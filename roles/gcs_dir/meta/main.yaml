@@ -25,3 +25,4 @@ dependencies:
   - role: lazyninjas.gcp.gcp_bucket
     buckets:
       - name: '{{ dest_bucket }}'
+        public: '{{ public }}'

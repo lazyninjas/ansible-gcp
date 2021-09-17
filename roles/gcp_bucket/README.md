@@ -10,10 +10,11 @@ Creates and destroys Storage Buckets in GCP/Google Cloud Platform.
 
 ### Bucket configuration
 
-| Name    | Default        | Required | Description                              |
-|---------|----------------|----------|------------------------------------------|
-| name    |                | ✓        | Bucket name, should be kebab-case        |
-| region  | {{gcp_region}} | ✓        | Region where the bucket should be placed |
+| Name    | Default        | Required | Description                               |
+|---------|----------------|----------|-------------------------------------------|
+| name    |                | ✓        | Bucket name, should be kebab-case         |
+| region  | {{gcp_region}} | ✓        | Region where the bucket should be placed  |
+| public  | false          | ✓        | Should contents of this bucket be public? |
 
 Please read [Common Configuration](../../README.md#common-configuration) as well.
 
@@ -30,6 +31,7 @@ Please read [Common Configuration](../../README.md#common-configuration) as well
         - name: example-bucket
         - name: example-bucket-across-ocean
           region: us-west1
+          public: true
 ```
 
 ## Roadmap
