@@ -27,6 +27,4 @@ allow_duplicates: true
 dependencies:
   - role: lazyninjas.gcp.gcp_env
   - role: lazyninjas.gcp.gcs_dir
-    dest_bucket: '{{ dest_bucket }}'
     public: true
-    src_dir: '{{ src_dir }}'
