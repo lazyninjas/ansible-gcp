@@ -17,6 +17,9 @@ ansible-galaxy install lazyninjas.gcp
 * [gcp_api](https://github.com/lazyninjas/ansible-gcp/tree/master/roles/gcp_api) - Enables individual service APIs
 * [gcp_function](https://github.com/lazyninjas/ansible-gcp/tree/master/roles/gcp_function) - Deploys Cloud Functions
 * [gcp_bucket](https://github.com/lazyninjas/ansible-gcp/tree/master/roles/gcp_bucket) - Creates Storage Buckets
+* [gcp_scheduler](https://github.com/lazyninjas/ansible-gcp/tree/master/roles/gcp_scheduler) - Creates Cloud Schedulers
+* [gcs_dir](https://github.com/lazyninjas/ansible-gcp/tree/master/roles/gcs_dir) - Synchronizes local directory with a Bucket
+* [gcs_static_website](https://github.com/lazyninjas/ansible-gcp/tree/master/roles/gcs_static_website) - Deploys static websites to GCP
 
 ## Common Configuration
 
