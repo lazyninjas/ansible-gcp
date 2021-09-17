@@ -1,0 +1,87 @@
+---
+- name: Set facts
+  ansible.builtin.set_fact:
+    external_address_name: '{{ project_name }}-address'
+    backend_bucket_name: '{{ project_name }}-backend-bucket'
+
+- name: Configure routing
+  ansible.builtin.shell: 'gsutil web set -m index.html -e index.html gs://{{ dest_bucket }}'
+
+- name: External IP address
+  google.cloud.gcp_compute_global_address:
+    address_type: EXTERNAL
+    auth_kind: 'serviceaccount'
+    name: '{{ external_address_name }}'
+    service_account_file: '{{ gcp_service_account_file }}'
+    project: '{{ gcp_project_id }}'
+    state: present
+  register: external_address
+
+- name: Create a backend bucket
+  google.cloud.gcp_compute_backend_bucket:
+    auth_kind: serviceaccount
+    bucket_name: '{{ dest_bucket }}'
+    description: Static website backend bucket
+    enable_cdn: 'false'
+    name: '{{ backend_bucket_name }}'
+    project: '{{ gcp_project_id }}'
+    service_account_file: '{{ gcp_service_account_file }}'
+    state: present
+  register: backend_bucket
+
+- name: Create an URL map
+  google.cloud.gcp_compute_url_map:
+    auth_kind: serviceaccount
+    default_service: '{{ backend_bucket }}'
+    name: '{{ project_name }}-urlmap'
+    project: '{{ gcp_project_id }}'
+    service_account_file: '{{ gcp_service_account_file }}'
+    state: present
+  register: urlmap
+
+- name: Create a target HTTP proxy
+  google.cloud.gcp_compute_target_http_proxy:
+    auth_kind: serviceaccount
+    name: '{{ project_name }}-http-proxy'
+    project: '{{ gcp_project_id }}'
+    service_account_file: '{{ gcp_service_account_file }}'
+    state: present
+    url_map:
+      selfLink: '{{ urlmap.selfLink }}'
+  register: http_proxy
+
+- name: Create forwarding rule
+  google.cloud.gcp_compute_global_forwarding_rule:
+    auth_kind: serviceaccount
+    ip_address: '{{ external_address.selfLink }}'
+    ip_protocol: TCP
+    name: '{{ project_name }}-http-forwarding-rule'
+    port_range: 80-80
+    project: '{{ gcp_project_id }}'
+    service_account_file: '{{ gcp_service_account_file }}'
+    state: present
+    target: '{{ http_proxy.selfLink }}'
+
+- name: Create DNS zone
+  google.cloud.gcp_dns_managed_zone:
+    auth_kind: 'serviceaccount'
+    description: 'DNS zone for project {{ project_name }}'
+    dns_name: '{{ dns_zone }}.'
+    name: '{{ dns_zone_name }}'
+    project: '{{ gcp_project_id }}'
+    service_account_file: '{{ gcp_service_account_file }}'
+    state: present
+  register: managed_zone
+
+- name: Register DNS front name
+  google.cloud.gcp_dns_resource_record_set:
+    auth_kind: 'serviceaccount'
+    managed_zone: '{{ managed_zone }}'
+    name: '{{ dns_domain }}.'
+    project: '{{ gcp_project_id }}'
+    service_account_file: '{{ gcp_service_account_file }}'
+    state: present
+    ttl: 600
+    type: A
+    target:
+      - '{{ external_address.address }}'

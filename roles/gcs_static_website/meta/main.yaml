@@ -1,0 +1,29 @@
+---
+galaxy_info:
+  author: Pavel Žák <pavel@zak.global>
+  role_name: gcs_static_website
+  license: GPL-3.0-or-later
+  min_ansible_version: 2.9
+  description: Deploy Static website to Gooogle Cloud with Ansible
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - gcp
+    - google
+    - cloud
+    - platform
+    - storage
+    - bucket
+    - static
+    - website
+    - react
+
+allow_duplicates: true
+dependencies:
+  - role: lazyninjas.gcp.gcp_env
+  - role: lazyninjas.gcp.gcs_dir
