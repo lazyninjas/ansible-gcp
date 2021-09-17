@@ -1,8 +1,8 @@
 ---
 - name: Set facts
   ansible.builtin.set_fact:
-    external_address_name: '{{ name }}-address'
-    backend_bucket_name: '{{ name }}-backend-bucket'
+    external_address_name: '{{ project_name }}-address'
+    backend_bucket_name: '{{ project_name }}-backend-bucket'
 
 - name: Configure routing
   ansible.builtin.shell: 'gsutil web set -m index.html -e index.html gs://{{ dest_bucket }}'
@@ -33,7 +33,7 @@
   google.cloud.gcp_compute_url_map:
     auth_kind: serviceaccount
     default_service: '{{ backend_bucket }}'
-    name: '{{ name }}-urlmap'
+    name: '{{ project_name }}-urlmap'
     project: '{{ gcp_project_id }}'
     service_account_file: '{{ gcp_service_account_file }}'
     state: present
@@ -42,7 +42,7 @@
 - name: Create a target HTTP proxy
   google.cloud.gcp_compute_target_http_proxy:
     auth_kind: serviceaccount
-    name: '{{ name }}-http-proxy'
+    name: '{{ project_name }}-http-proxy'
     project: '{{ gcp_project_id }}'
     service_account_file: '{{ gcp_service_account_file }}'
     state: present
@@ -55,7 +55,7 @@
     auth_kind: serviceaccount
     ip_address: '{{ external_address.selfLink }}'
     ip_protocol: TCP
-    name: '{{ name }}-http-forwarding-rule'
+    name: '{{ project_name }}-http-forwarding-rule'
     port_range: 80-80
     project: '{{ gcp_project_id }}'
     service_account_file: '{{ gcp_service_account_file }}'
@@ -65,7 +65,7 @@
 - name: Create DNS zone
   google.cloud.gcp_dns_managed_zone:
     auth_kind: 'serviceaccount'
-    description: 'DNS zone for project {{ name }}'
+    description: 'DNS zone for project {{ project_name }}'
     dns_name: '{{ dns_zone }}.'
     name: '{{ dns_zone_name }}'
     project: '{{ gcp_project_id }}'

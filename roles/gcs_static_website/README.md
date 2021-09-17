@@ -4,12 +4,12 @@ Configures very basic static website on GCP Cloud Storage bucket.
 
 ## Configuration
 
-| Name        | Default | Required | Description              |
-|-------------|---------|----------|--------------------------|
-| name        |         | ✓        | Name of the project, used for identification. Must by kebab-case |
-| dest_bucket |         | ✓        | Destination bucket name  |
-| src_dir     |         | ✓        | Path to source directory |
-| dns_domain  |         | ✓        | DNS Domain that will be configured to serve the static website |
+| Name         | Default | Required | Description              |
+|--------------|---------|----------|--------------------------|
+| dest_bucket  |         | ✓        | Destination bucket name  |
+| project_name |         | ✓        | Name of the project, used for identification. Must by kebab-case |
+| src_dir      |         | ✓        | Path to source directory |
+| dns_domain   |         | ✓        | DNS Domain that will be configured to serve the static website |
 
 
 Please read [Common Configuration](../../README.md#common-configuration) as well.
