@@ -8,11 +8,12 @@
     service_account_file: '{{ gcp_service_account_file }}'
     state: '{{ state }}'
     storage_class: '{{ bucket.storage_class | default("STANDARD", true) }}'
+  register: bucket_inst
 
 - name: 'Make {{ bucket.name }} public'
   google.cloud.gcp_storage_bucket_access_control:
     auth_kind: serviceaccount
-    bucket: '{{ bucket.name }}'
+    bucket: '{{ bucket_inst }}'
     entity: allUsers
     project: '{{ gcp_project_id }}'
     role: READER
