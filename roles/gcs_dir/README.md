@@ -7,7 +7,7 @@ Uploads directories from local machine to GCP Cloud Storage buckets.
 | Name        | Default | Required | Description              |
 |-------------|---------|----------|--------------------------|
 | dest_bucket |         | ✓        | Destination bucket name  |
-| dir         |         | ✓        | Path to source directory |
+| src_dir     |         | ✓        | Path to source directory |
 
 
 Please read [Common Configuration](../../README.md#common-configuration) as well.
