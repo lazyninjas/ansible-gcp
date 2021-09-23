@@ -11,8 +11,8 @@
   register: bucket_inst
 
 - name: 'Make {{ bucket.name }} uniform bucket level access'
-  ansible.builtin.shell: gsutil ubla set on gs://{{ dest_bucket }}
+  ansible.builtin.shell: gsutil ubla set on gs://{{ bucket.name }}
 
 - name: 'Make {{ bucket.name }} public'
-  ansible.builtin.shell: gsutil iam ch allUsers:objectViewer gs://{{ dest_bucket }}
+  ansible.builtin.shell: gsutil iam ch allUsers:objectViewer gs://{{ bucket.name }}
   when: public
