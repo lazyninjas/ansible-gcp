@@ -1,11 +1,16 @@
 ---
 - name: Set facts
   ansible.builtin.set_fact:
-    external_address_name: '{{ project_name }}-address'
     backend_bucket_name: '{{ project_name }}-backend-bucket'
+    bucket_url: 'gs://{{ dest_bucket }}'
+    cache_header: 'Cache-Control:max-age=300, must-revalidate'
+    external_address_name: '{{ project_name }}-address'
 
 - name: Configure routing
-  ansible.builtin.shell: 'gsutil web set -m index.html -e index.html gs://{{ dest_bucket }}'
+  ansible.builtin.shell: 'gsutil web set -m index.html -e index.html {{ bucket_url }}'
+
+- name: Avoid cache trap on index.html
+  ansible.builtin.shell: 'gsutil setmeta -h "{{ cache_header }}" {{ bucket_url }}/index.html'
 
 - name: External IP address
   google.cloud.gcp_compute_global_address:
