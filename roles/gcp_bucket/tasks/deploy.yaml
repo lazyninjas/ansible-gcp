@@ -15,4 +15,4 @@
 
 - name: 'Make {{ bucket.name }} public'
   ansible.builtin.shell: gsutil iam ch allUsers:objectViewer gs://{{ bucket.name }}
-  when: bucket.public
+  when: bucket.get('public', False)
